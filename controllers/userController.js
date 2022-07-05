@@ -49,8 +49,27 @@ exports.createUser = async (req, res) => {
  * @access Public
  *  */  
 
-exports.getUser = async (req, res) =>{
+exports.getUser = async (req, res) => {
 
     const users = await User.find();  // will find every user in users collection
     res.status(200).json(users)
 }
+/**
+ * @method GET
+ * @route /finduser 
+ * @access Public
+ * @return Searched user by email
+ * @desc finding on user by email  */ 
+ 
+
+exports.getOneUser = async (req, res) => {
+
+    const {age} = req.body
+    const user = await User.findOne({age})
+    console.log(user)
+     user.sayHi(); 
+    res.status(200).json(user)
+
+}
+
+// i am exporting an object that is call module {getOneUser,getUser}
